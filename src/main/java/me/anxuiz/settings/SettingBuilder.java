@@ -18,6 +18,7 @@ public class SettingBuilder {
     protected @Nullable String description = null;
     protected @Nullable Type type = null;
     protected @Nullable Object defaultValue = null;
+    protected @Nullable Object extra = null;
 
     public SettingBuilder() {
     }
@@ -71,11 +72,17 @@ public class SettingBuilder {
         return this;
     }
 
+    public @Nonnull SettingBuilder extra(@Nonnull Object extra) {
+        Preconditions.checkNotNull(extra, "extra");
+        this.extra = extra;
+        return this;
+    }
+
     public @Nonnull Setting get() throws IllegalStateException {
         Preconditions.checkState(this.name != null, "setting must have name");
         Preconditions.checkState(this.summary != null, "setting must have summary");
         Preconditions.checkState(this.type != null, "setting must have type");
 
-        return new SimpleSetting(this.name, this.aliases, this.summary, this.description, this.type, this.defaultValue);
+        return new SimpleSetting(this.name, this.aliases, this.summary, this.description, this.type, this.defaultValue, this.extra);
     }
 }

@@ -18,19 +18,22 @@ public class SimpleSetting implements Setting {
 
     protected final @Nonnull Type type;
     protected final @Nullable Object defaultValue;
+    protected final @Nullable Object extra;
 
     public SimpleSetting(@Nonnull String name,
                          @Nonnull Set<String> aliases,
                          @Nonnull String summary,
                          @Nullable String description,
                          @Nonnull Type type,
-                         @Nullable Object defaultValue) {
+                         @Nullable Object defaultValue,
+                         @Nullable Object extra) {
         this.name = name;
         this.aliases = ImmutableSortedSet.copyOf(aliases);
         this.summary = summary;
         this.description = description;
         this.type = type;
         this.defaultValue = defaultValue;
+        this.extra = extra;
     }
 
     public @Nonnull String getName() {
@@ -61,13 +64,16 @@ public class SimpleSetting implements Setting {
         return this.type;
     }
 
-    @Override
     public boolean hasDefaultValue() {
         return this.defaultValue != null;
     }
 
     public @Nullable Object getDefaultValue() {
         return this.defaultValue;
+    }
+
+    public @Nullable Object getExtra() {
+        return this.extra;
     }
 
     @Override

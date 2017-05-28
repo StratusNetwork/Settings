@@ -46,4 +46,9 @@ public interface Setting {
      * The default value of this setting, or null if no default is defined
      */
     @Nullable Object getDefaultValue();
+
+    /**
+     * An extra object for the setting
+     */
+    @Nullable Object getExtra();
 }
